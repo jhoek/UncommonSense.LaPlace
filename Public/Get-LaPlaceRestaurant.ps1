@@ -26,12 +26,12 @@ function Get-LaPlaceRestaurant
             City      = $Data.Address.City
             Country   = $Data.Address.Country
             PhoneNo   = $Data.Contact.Phone
-            OpeningHours = [PSCustomObject]@{
-                Monday = $Data.OpeningHours.Monday | ForEach-Object { [PSCustomObject]@{
-                    From = [TimeSpan]$_.FromTime
-                    To = [TimeSpan]$_.ToTime
-                }}
-            }
+            # OpeningHours = [PSCustomObject]@{
+            #     Monday = $Data.OpeningHours.Monday | ForEach-Object { [PSCustomObject]@{
+            #         From = [TimeSpan]$_.FromTime
+            #         To = [TimeSpan]$_.ToTime
+            #     }}
+            # }
         }
     }
 }

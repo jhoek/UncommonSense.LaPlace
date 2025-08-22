@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuration>
+  <DefaultSettings>
+    <ShowError/>
+    <DisplayError/>
+  </DefaultSettings>
   <ViewDefinitions>
     <View>
         <Name>Default</Name>
@@ -37,7 +41,6 @@
                         <ExpressionBinding>
                             <ScriptBlock>$_.OpeningHours | Format-Table -HideTableHeaders | Out-String</ScriptBlock>
                         </ExpressionBinding>
-                        <NewLine/>
                         <ExpressionBinding>
                             <ScriptBlock>$_.SpecialOpeningHours | Format-Table -HideTableHeaders | Out-String</ScriptBlock>
                         </ExpressionBinding>
@@ -45,6 +48,47 @@
                 </CustomEntry>
             </CustomEntries>
         </CustomControl>
+    </View>
+
+    <View>
+        <Name>Default</Name>
+        <ViewSelectedBy>
+            <TypeName>UncommonSense.LaPlace.SpecialOpeningHours</TypeName>
+        </ViewSelectedBy>
+        <TableControl>
+            <AutoSize/>
+            <HideTableHeaders/>
+            <TableHeaders>
+                <TableColumnHeader>
+                    <Label>Description</Label>
+                    <Width>20</Width>
+                    <Alignment>Right</Alignment>
+                </TableColumnHeader>
+                <TableColumnHeader>
+                    <Label>Date(s)</Label>
+                    <Width>22</Width>
+                </TableColumnHeader>
+                <TableColumnHeader>
+                    <Label>OpeningHours</Label>
+                    <Width>20</Width>
+                </TableColumnHeader>
+            </TableHeaders>
+            <TableRowEntries>
+                <TableRowEntry>
+                    <TableColumnItems>
+                        <TableColumnItem>
+                            <PropertyName>Description</PropertyName>
+                        </TableColumnItem>
+                        <TableColumnItem>
+                            <ScriptBlock>$_.ValidFrom -eq $_.ValidThrough ? "$($_.ValidFrom)" : "$($_.ValidFrom)..$($_.ValidThrough)"</ScriptBlock>
+                        </TableColumnItem>
+                        <TableColumnItem>
+                            <ScriptBlock>$_.Closed ? "Closed" : "$($_.Opens)..$($_.Closes)"</ScriptBlock>
+                        </TableColumnItem>
+                    </TableColumnItems>
+                </TableRowEntry>
+            </TableRowEntries>
+        </TableControl>
     </View>
   </ViewDefinitions>
 </Configuration>

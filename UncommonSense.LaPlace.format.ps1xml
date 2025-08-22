@@ -33,6 +33,14 @@
                         <ExpressionBinding>
                             <PropertyName>PhoneNo</PropertyName>
                         </ExpressionBinding>
+                        <NewLine/>
+                        <ExpressionBinding>
+                            <ScriptBlock>$_.OpeningHours | Format-Table -HideTableHeaders | Out-String</ScriptBlock>
+                        </ExpressionBinding>
+                        <NewLine/>
+                        <ExpressionBinding>
+                            <ScriptBlock>$_.SpecialOpeningHours | Format-Table -HideTableHeaders | Out-String</ScriptBlock>
+                        </ExpressionBinding>
                     </CustomItem>
                 </CustomEntry>
             </CustomEntries>

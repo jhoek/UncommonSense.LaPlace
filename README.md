@@ -5,21 +5,20 @@ PowerShell module for retrieving LaPlace (NL) restaurant information.
 <a name="Get-LaPlaceRestaurant"></a>
 ## Get-LaPlaceRestaurant
 ### Synopsis
-Get-LaPlaceRestaurant [[-ID] <string>]
+Retrieves address and opening hours for LaPlace restaurants
 ### Syntax
 ```powershell
 Get-LaPlaceRestaurant [[-ID] <string>]
 ```
 ### Parameters
-#### ID &lt;string&gt;
+#### ID &lt;String&gt;
     
     Required?                    false
-    Position?                    0
+    Position?                    1
+    Default value                
     Accept pipeline input?       false
-    Parameter set name           (All)
-    Aliases                      None
-    Dynamic?                     false
+    Aliases                      
     Accept wildcard characters?  false
 <div style='font-size:small'>License: https://github.com/jhoek/UncommonSense.LaPlace/blob/master/LICENSE</div>
 <div style='font-size:small'>uncommonsense.nl</div>
-<div style='font-size:small; color: #ccc'>Generated 21-08-2025 21:58</div>
+<div style='font-size:small; color: #ccc'>Generated 22-08-2025 11:02</div>

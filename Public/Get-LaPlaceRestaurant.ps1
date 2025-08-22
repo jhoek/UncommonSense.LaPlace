@@ -1,3 +1,7 @@
+<#
+.SYNOPSIS
+Retrieves address and opening hours for LaPlace restaurants
+#>
 function Get-LaPlaceRestaurant
 {
     [Parameter(Mandatory, Position = 0)]

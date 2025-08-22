@@ -29,6 +29,14 @@ function Get-LaPlaceRestaurant
                     Closes = $_.Closes
                 }
             }
+            SpecialOpeningHours = $Data.SpecialOpeningHours | ForEach-Object {
+                [PSCustomObject]@{
+                    ValidFrom = $_.ValidFrom
+                    ValidThrough = $_.ValidThrough
+                    Opens = $_.Opens
+                    Closes = $_.Closes
+                }
+            }
         }
     }
 }

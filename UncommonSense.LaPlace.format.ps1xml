@@ -25,6 +25,10 @@
                         <ExpressionBinding>
                             <PropertyName>City</PropertyName>
                         </ExpressionBinding>
+                        <Text> </Text>
+                        <ExpressionBinding>
+                            <ScriptBlock>"($($_.Country))"</ScriptBlock>
+                        </ExpressionBinding>
                         <NewLine/>
                         <ExpressionBinding>
                             <PropertyName>PhoneNo</PropertyName>

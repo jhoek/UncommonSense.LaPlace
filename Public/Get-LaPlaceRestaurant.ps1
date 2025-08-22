@@ -25,16 +25,16 @@ function Get-LaPlaceRestaurant
             OpeningHours = $Data.OpeningHoursSpecification | ForEach-Object {
                 [PSCustomObject]@{
                     DayOfWeek = [System.DayOfWeek]($_.DayOfWeek -replace '^https://schema.org/', '')
-                    Opens = $_.Opens
-                    Closes = $_.Closes
+                    Opens = [timespan]$_.Opens
+                    Closes = [timespan]$_.Closes
                 }
             }
             SpecialOpeningHours = $Data.SpecialOpeningHours | ForEach-Object {
                 [PSCustomObject]@{
-                    ValidFrom = $_.ValidFrom
-                    ValidThrough = $_.ValidThrough
-                    Opens = $_.Opens
-                    Closes = $_.Closes
+                    ValidFrom = [dateonly]$_.ValidFrom
+                    ValidThrough = [dateonly]$_.ValidThrough
+                    Opens = [timespan]$_.Opens
+                    Closes = [timespan]$_.Closes
                 }
             }
         }

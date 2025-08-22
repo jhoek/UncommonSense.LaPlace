@@ -32,6 +32,7 @@ function Get-LaPlaceRestaurant
         $Data = $Matches[1] | ConvertFrom-Json
 
         [PSCustomObject]@{
+            PSTypeName          = 'UncommonSense.LaPlace.Restaurant'
             Name                = $Data.Name.Trim()
             Latitude            = $Data.geo.Latitude
             Longitude           = $Data.geo.Longitude
@@ -42,9 +43,10 @@ function Get-LaPlaceRestaurant
             PhoneNo             = $Data.Telephone.Trim()
             OpeningHours        = $Data.OpeningHoursSpecification | ForEach-Object {
                 [PSCustomObject]@{
-                    DayOfWeek = [System.DayOfWeek]($_.DayOfWeek -replace '^https://schema.org/', '')
-                    Opens     = [timespan]$_.Opens
-                    Closes    = [timespan]$_.Closes
+                    PSTypeName = 'UncommonSense.LaPlace.OpeningHours'
+                    DayOfWeek  = [System.DayOfWeek]($_.DayOfWeek -replace '^https://schema.org/', '')
+                    Opens      = [timespan]$_.Opens
+                    Closes     = [timespan]$_.Closes
                 }
             }
             SpecialOpeningHours = $Data.SpecialOpeningHours | ForEach-Object {
@@ -53,6 +55,7 @@ function Get-LaPlaceRestaurant
                 $OpeningHoursExtra1 = $OpeningHoursExtra | Where-Object FromDate -EQ $FromDate | Where-Object ThroughDate -EQ $ToDate
 
                 [PSCustomObject]@{
+                    PSTypeName   = 'UncommonSense.LaPlace.SpecialOpeningHours'
                     Description  = $OpeningHoursExtra1 | Select-Object -ExpandProperty Name
                     ValidFrom    = $FromDate
                     ValidThrough = $ToDate

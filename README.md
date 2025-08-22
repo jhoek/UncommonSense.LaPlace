@@ -21,4 +21,4 @@ Get-LaPlaceRestaurant [[-ID] <string>]
     Accept wildcard characters?  false
 <div style='font-size:small'>License: https://github.com/jhoek/UncommonSense.LaPlace/blob/master/LICENSE</div>
 <div style='font-size:small'>uncommonsense.nl</div>
-<div style='font-size:small; color: #ccc'>Generated 22-08-2025 11:02</div>
+<div style='font-size:small; color: #ccc'>Generated 22-08-2025 11:04</div>

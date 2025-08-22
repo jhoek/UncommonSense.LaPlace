@@ -4,7 +4,7 @@ Retrieves address and opening hours for LaPlace restaurants
 #>
 function Get-LaPlaceRestaurant
 {
-    [Parameter(Mandatory, Position = 0)]
+    [Parameter(Mandatory = $true, Position = 0)]
     param
     (
         [string]$ID

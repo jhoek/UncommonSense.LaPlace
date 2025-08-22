@@ -11,32 +11,24 @@ function Get-LaPlaceRestaurant
 
     if ($Content -match '<script\ type="application/ld\+json">(.*?)</script>')
     {
-        $Matches[1] | pbcopy
-        # $matches[1][-6..-1]
-        # $Data = $Matches[1]
-        # | ConvertFrom-Json
-        # | Select-Object -ExpandProperty props
-        # | Select-Object -ExpandProperty pageProps
-        # | Select-Object -ExpandProperty data
+        $Data = $Matches[1] | ConvertFrom-Json
 
-        # [PSCustomObject]@{
-        #     Name      = $Data.Title
-        #     Latitude  = $Data.position.Latitude
-        #     Longitude = $Data.position.Longitude
-        #     Address   = @($Data.Address.Street, (@($Data.Address.HouseNr, $Data.Address.HouseSub) -join '') | Where-Object { $_ }) -join ' '
-        #     Postcode  = $Data.Address.PostalCode
-        #     City      = $Data.Address.City
-        #     Country   = $Data.Address.Country
-        #     PhoneNo   = $Data.Contact.Phone
-
-            # FIXME: misschien toch <script type="application/ld+json"> gebruiken? Geen omrekning van openingstijdennodig
-
-            # OpeningHours = [PSCustomObject]@{
-            #     Monday = $Data.OpeningHours.Monday | ForEach-Object { [PSCustomObject]@{
-            #         From = [TimeSpan]$_.FromTime
-            #         To = [TimeSpan]$_.ToTime
-            #     }}
-            # }
-        # }
+        [PSCustomObject]@{
+            Name      = $Data.Name.Trim()
+            Latitude  = $Data.geo.Latitude
+            Longitude = $Data.geo.Longitude
+            Address   = $Data.Address.StreetAddress.Trim()
+            Postcode  = $Data.Address.PostalCode.Trim()
+            City      = $Data.Address.AddressLocality.Trim()
+            Country   = $Data.Address.AddressCountry.Trim()
+            PhoneNo   = $Data.Telephone.Trim()
+            OpeningHours = $Data.OpeningHoursSpecification | ForEach-Object {
+                [PSCustomObject]@{
+                    DayOfWeek = [System.DayOfWeek]($_.DayOfWeek -replace '^https://schema.org/', '')
+                    Opens = $_.Opens
+                    Closes = $_.Closes
+                }
+            }
+        }
     }
 }
